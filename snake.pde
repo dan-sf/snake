@@ -1,10 +1,12 @@
 PlayerSnake snake;
 Food food;
-int framesToWait = 8;
 boolean gameOver = false;
 
 void setup() {
   size(600, 600);
+
+  frameRate(10);
+  background(51);
 
   snake = new PlayerSnake();
   food = new Food();
@@ -14,27 +16,24 @@ void setup() {
 }
 
 void draw() {
+  checkGameOver();
+  if (!gameOver) {
 
-  if (frameCount % framesToWait == 0) {
-    checkGameOver();
-    if (!gameOver) {
-      background(51);
-
-      if (snake.eat(food)) {
-        snake.growTail();
-        food.update();
-      }
-      food.show();
-
-      snake.update();
-      snake.show();
+    background(51);
+    if (snake.eat(food)) {
+      snake.growTail();
+      food.update();
     }
-    else {
-      if (mousePressed) {
-        setup();
-        key = 'd';
-        gameOver = false;
-      }
+    food.show();
+
+    snake.update();
+    snake.show();
+  }
+  else {
+    if (mousePressed) {
+      setup();
+      key = 'd';
+      gameOver = false;
     }
   }
 }

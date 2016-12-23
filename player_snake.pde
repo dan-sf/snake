@@ -1,4 +1,4 @@
-// TODO tail death, death blink, top and bottom screen death
+// TODO tail death, death blink
 class PlayerSnake {
 
   float rectSize = 20;
@@ -101,19 +101,9 @@ class PlayerSnake {
     fill(255);
     stroke(51);
 
-    if (x == width && xSpeed > 0)
-      x = 0;
-    else if (x == -rectSize && xSpeed < 0)
-      x = width+rectSize;
-    if (y == height && ySpeed > 0)
-      y = 0;
-    else if (y == -rectSize && ySpeed < 0)
-      y = height+rectSize;
-
     for (PVector v : tail) {
       rect(v.x, v.y, rectSize, rectSize);
     }
     rect(x, y, rectSize, rectSize);
-
   }
 }
