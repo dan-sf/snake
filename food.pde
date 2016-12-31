@@ -1,3 +1,4 @@
+// TODO: make it so the food doesn't appear on the snake's tail
 class Food {
   float x;
   float y;

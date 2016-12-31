@@ -5,9 +5,7 @@ int tmp;
 boolean gameOver;
 
 void setup() {
-  size(601, 601);
-
-  //frameRate(8);
+  size(600, 600);
   background(51);
 
   snake = new PlayerSnake();
@@ -42,8 +40,8 @@ void draw() {
       gameOver = true;
     }
   }
-  else {
-    if (mousePressed) {
+  else if (gameOver) {
+    if (mousePressed || keyPressed) {
       setup();
       key = 'd';
     }

@@ -1,4 +1,4 @@
-// TODO tail death, death blink
+// TODO death blink
 class PlayerSnake {
 
   float rectSize = 20;
@@ -100,13 +100,13 @@ class PlayerSnake {
   boolean death() {
     boolean hitTail = false;
     boolean hitTop = snake.y < 0;
-    boolean hitBottom = snake.x >= height - snake.rectSize;
-    boolean hitLeft = snake.y >= width - snake.rectSize;
+    boolean hitBottom = snake.x > height - snake.rectSize;
+    boolean hitLeft = snake.y > width - snake.rectSize;
     boolean hitRight = snake.x < 0;
 
     for (PVector t : tail) {
-      float d = dist(x, y, t.x, t.y);
-      if (d < 1) {
+      if ((x > t.x - rectSize && x < t.x + rectSize) &&
+          (y > t.y - rectSize && y < t.y + rectSize)) {
         hitTail = true;
       }
     }
