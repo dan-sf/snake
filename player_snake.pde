@@ -97,6 +97,28 @@ class PlayerSnake {
     }
   }
 
+  boolean death() {
+    boolean hitTail = false;
+    boolean hitTop = snake.y < 0;
+    boolean hitBottom = snake.x >= height - snake.rectSize;
+    boolean hitLeft = snake.y >= width - snake.rectSize;
+    boolean hitRight = snake.x < 0;
+
+    for (PVector t : tail) {
+      float d = dist(x, y, t.x, t.y);
+      if (d < 1) {
+        hitTail = true;
+      }
+    }
+
+    if (hitTop || hitBottom || hitLeft || hitRight || hitTail) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
   void show() {
     fill(255);
     stroke(51);

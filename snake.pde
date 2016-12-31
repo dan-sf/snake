@@ -1,11 +1,13 @@
+// TODO: Figure out how to use a higher framerate
 PlayerSnake snake;
 Food food;
-boolean gameOver = false;
+int tmp;
+boolean gameOver;
 
 void setup() {
-  size(600, 600);
+  size(601, 601);
 
-  frameRate(10);
+  //frameRate(8);
   background(51);
 
   snake = new PlayerSnake();
@@ -13,38 +15,38 @@ void setup() {
 
   food.update();
   food.show();
+  tmp=0;
+  gameOver = false;
 }
 
 void draw() {
-  checkGameOver();
-  if (!gameOver) {
 
-    background(51);
+  boolean updateGame = frameCount % 8 == 0;
+  if (!gameOver && updateGame) {
     if (snake.eat(food)) {
       snake.growTail();
       food.update();
     }
-    food.show();
+    if (tmp < 10) {
+      snake.growTail();
+      tmp++;
+    }
 
     snake.update();
-    snake.show();
+    if (!snake.death()) {
+      background(51);
+      food.show();
+      snake.show();
+    }
+    else {
+      gameOver = true;
+    }
   }
   else {
     if (mousePressed) {
       setup();
       key = 'd';
-      gameOver = false;
     }
-  }
-}
-
-void checkGameOver() {
-  if (snake.x < 0 || snake.x >= height - snake.rectSize
-      || snake.y > width - snake.rectSize || snake.y < 0) {
-    gameOver = true;
-  }
-  else {
-    gameOver = false;
   }
 }
 
