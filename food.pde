@@ -1,8 +1,10 @@
-// TODO: make it so the food doesn't appear on the snake's tail
+// Todo: make it so the food doesn't appear on the snake's tail
 class Food {
-  float x;
-  float y;
-  float rectSize = 20;
+  float rectSize, x, y;
+
+  Food(int rectSize) {
+    this.rectSize = rectSize;
+  }
 
   void update() {
     x = (float) ( (int)random(width/rectSize) * (int)rectSize );

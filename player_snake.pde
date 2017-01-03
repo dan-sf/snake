@@ -1,23 +1,26 @@
-// TODO death blink
+// Todo death blink
 class PlayerSnake {
-
-  float rectSize = 20;
-  float genSpeed = rectSize;
-  float xSpeed = genSpeed;
-  float ySpeed = 0;
-
-  float x = rectSize*2;
-  float y = rectSize*2;
-
+  float rectSize, genSpeed, xSpeed, ySpeed, x, y;
   ArrayList<PVector> tail = new ArrayList<PVector>();
-
   int total = 0;
+
+  PlayerSnake(int rectSize) {
+    this.rectSize = rectSize;
+
+    genSpeed = rectSize;
+    xSpeed = genSpeed;
+    ySpeed = 0;
+
+    x = rectSize*2;
+    y = rectSize*2;
+
+  }
 
   void growTail() {
     tail.add(new PVector(x, y));
   }
 
-  void update() {
+  void updateDirection() {
 
     // Read in movement keys
     if (key == 'w' || key == 'k' || key == UP) {
@@ -55,6 +58,10 @@ class PlayerSnake {
         direction(genSpeed, 0);
       }
     }
+
+  }
+
+  void updatePosition() {
 
     float prevTailX = x;
     float prevTailY = y;

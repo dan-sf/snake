@@ -1,20 +1,35 @@
-// TODO: Figure out how to use a higher framerate
+// Todo: make game consistent when frame rate changes
 PlayerSnake snake;
 Food food;
-int tmp;
 boolean gameOver;
 
+int rectSize = 20;
+int windowSize = 25 * rectSize;
+
+// Note: settings only allows size to be used with variables (new in processing 3,
+// breaks on older versions), is this needed?
+void settings() {
+  size(windowSize, windowSize);
+}
+
 void setup() {
-  size(600, 600);
   background(51);
 
-  snake = new PlayerSnake();
-  food = new Food();
+  snake = new PlayerSnake(rectSize);
+  food = new Food(rectSize);
 
   food.update();
   food.show();
-  tmp=0;
   gameOver = false;
+}
+
+void keyPressed() {
+  if (gameOver) {
+    setup();
+  }
+  else {
+    snake.updateDirection();
+  }
 }
 
 void draw() {
@@ -25,12 +40,8 @@ void draw() {
       snake.growTail();
       food.update();
     }
-    if (tmp < 10) {
-      snake.growTail();
-      tmp++;
-    }
 
-    snake.update();
+    snake.updatePosition();
     if (!snake.death()) {
       background(51);
       food.show();
@@ -38,12 +49,6 @@ void draw() {
     }
     else {
       gameOver = true;
-    }
-  }
-  else if (gameOver) {
-    if (mousePressed || keyPressed) {
-      setup();
-      key = 'd';
     }
   }
 }
