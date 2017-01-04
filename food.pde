@@ -1,9 +1,20 @@
-// Todo: make it so the food doesn't appear on the snake's tail
 class Food {
   float rectSize, x, y;
 
   Food(int rectSize) {
     this.rectSize = rectSize;
+  }
+
+  boolean isOnSnake(float snakeX, float snakeY, ArrayList<PVector> snakeTail) {
+    if (x == snakeX && y == snakeY) {
+      return true;
+    }
+    for (PVector t : snakeTail) {
+      if (x == t.x && y == t.y) {
+        return true;
+      }
+    }
+    return false;
   }
 
   void update() {

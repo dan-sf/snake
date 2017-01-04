@@ -1,4 +1,3 @@
-// Todo death blink
 class PlayerSnake {
   float rectSize, genSpeed, xSpeed, ySpeed, x, y;
   ArrayList<PVector> tail = new ArrayList<PVector>();

@@ -1,10 +1,18 @@
-// Todo: make game consistent when frame rate changes
+/* Todo:
+    - make game consistent when frame rate changes
+    - add a score display
+    - add a game over splash screen or printed word
+    - add a new game splash screen
+    - add a snake death blink
+    - add some music/sound effects
+*/
+
 PlayerSnake snake;
 Food food;
 boolean gameOver;
 
 int rectSize = 20;
-int windowSize = 25 * rectSize;
+int windowSize = 20 * rectSize;
 
 // Note: settings only allows size to be used with variables (new in processing 3,
 // breaks on older versions), is this needed?
@@ -20,6 +28,7 @@ void setup() {
 
   food.update();
   food.show();
+
   gameOver = false;
 }
 
@@ -38,7 +47,9 @@ void draw() {
   if (!gameOver && updateGame) {
     if (snake.eat(food)) {
       snake.growTail();
-      food.update();
+      do {
+        food.update();
+      } while (food.isOnSnake(snake.x, snake.y, snake.tail));
     }
 
     snake.updatePosition();
