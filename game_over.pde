@@ -1,21 +1,20 @@
 class GameOverSplash {
   int rectSize;
-  int screenWidth;
   PVector[] fallingRects;
   int hasFallen;
+  int speed;
   boolean animationOver;
 
-  GameOverSplash(int screenWidth, int rectSize) {
+  GameOverSplash(int rectSize) {
     this.rectSize = rectSize;
-    this.screenWidth = screenWidth;
-
-    int numRects = screenWidth / rectSize;
+    int numRects = width / rectSize;
     fallingRects = new PVector[numRects];
+
     hasFallen = 0;
     animationOver = false;
+    speed = 8;
 
     for (int i=0; i < numRects; i++) {
-      //Create random number from -rectSize to -rectSize*4 <- ???
       int rectX = i * rectSize;
       int rectY = (int) random(-rectSize * 8, -rectSize);
 
@@ -25,22 +24,22 @@ class GameOverSplash {
   }
 
   void animate(int score) {
+    // Create the falling rect animation. Uses a bit field to keep track of
+    // when the rects reach the bottom of the screen.
     for (int i=0; i<fallingRects.length; i++) {
       if (fallingRects[i].y <= height - rectSize && hasFallen < ((1<<fallingRects.length)-1)) {
+        // Erase the previous screen
         fill(51);
         rect(fallingRects[i].x, fallingRects[i].y, rectSize, rectSize);
 
         fill(255);
-        fallingRects[i].y += 8;
+        fallingRects[i].y += speed;
         if (fallingRects[i].y >= height - rectSize) {
           rect(fallingRects[i].x, height - rectSize, rectSize, rectSize);
 
+          // Fallen bit field
           int mask = 1<<i;
           hasFallen = hasFallen | mask;
-          print("i: "); print(i);
-          print(", Mask: "); print(Integer.toString(mask, 2));
-          print(", hasFallen: "); print(Integer.toString(hasFallen, 2));
-          print(", all ones: "); println(Integer.toString( ((1<<fallingRects.length)-1), 2));
         }
         else {
           rect(fallingRects[i].x, fallingRects[i].y, rectSize, rectSize);
@@ -48,6 +47,7 @@ class GameOverSplash {
       }
     }
 
+    // Check if all falling rects have reached the bottom of the screen
     if (hasFallen == ((1<<fallingRects.length)-1)) {
       animationOver = true;
 
@@ -58,8 +58,6 @@ class GameOverSplash {
       textSize(18);
       text("Final score: " + String.valueOf(score) + "\nPress any key to restart",
            width/2, height/3 + 40);
-      rectMode(CORNER);
     }
-
   }
 }

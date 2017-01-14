@@ -6,6 +6,7 @@ class Food {
   }
 
   boolean isOnSnake(float snakeX, float snakeY, ArrayList<PVector> snakeTail) {
+    // Check to see if the food was drawn on/under the snake
     if (x == snakeX && y == snakeY) {
       return true;
     }

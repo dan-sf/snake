@@ -1,8 +1,6 @@
 /* Todo:
     - make game consistent when frame rate changes
     - figure out why rendering text takes so long on start up
-    - add a new game splash screen
-    - add read me
 */
 
 PlayerSnake snake;
@@ -12,33 +10,27 @@ GameOverSplash gameOverSplash;
 boolean gameOver;
 
 int rectSize = 20;
-int windowSize = 20 * rectSize;
-
-// Note: settings only allows size to be used with variables (new in processing 3,
-// breaks on older versions), is this needed?
-void settings() {
-  size(windowSize, windowSize);
-}
+boolean beginGame = false;
 
 void setup() {
+  size(400, 400);
   background(51);
-  textSize(32);
 
   snake = new PlayerSnake(rectSize);
   food = new Food(rectSize);
   score = new Score();
-  gameOverSplash = new GameOverSplash(width, rectSize);
+  gameOverSplash = new GameOverSplash(rectSize);
 
   food.update();
-  food.show();
-
   score.show();
-
   gameOver = false;
 }
 
 void keyPressed() {
-  if (gameOver && gameOverSplash.animationOver) {
+  if (!beginGame) {
+    beginGame = true;
+  }
+  else if (gameOver && gameOverSplash.animationOver) {
     setup();
   }
   else {
@@ -47,9 +39,19 @@ void keyPressed() {
 }
 
 void draw() {
-
   boolean updateGame = frameCount % 8 == 0;
-  if (!gameOver && updateGame) {
+
+  if (!beginGame) {
+    // Opening splash screen
+    fill(255);
+    textAlign(CENTER);
+    textSize(32);
+    text("Snake", width/2, height/3);
+    textSize(18);
+    text("Use w,a,s,d for movement\nPress any key to start",
+         width/2, height/3 + 40);
+  }
+  else if (!gameOver && updateGame) {
     if (snake.eat(food)) {
       snake.growTail();
       score.increase();
@@ -73,4 +75,3 @@ void draw() {
     gameOverSplash.animate(score.score);
   }
 }
-

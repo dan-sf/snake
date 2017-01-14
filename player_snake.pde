@@ -1,7 +1,6 @@
 class PlayerSnake {
   float rectSize, genSpeed, xSpeed, ySpeed, x, y;
   ArrayList<PVector> tail = new ArrayList<PVector>();
-  int total = 0;
 
   PlayerSnake(int rectSize) {
     this.rectSize = rectSize;
@@ -22,8 +21,8 @@ class PlayerSnake {
   void updateDirection() {
 
     // Read in movement keys
-    if (key == 'w' || key == 'k' || key == UP) {
-      if (total == 0) {
+    if (key == 'w' || key == UP) {
+      if (tail.size() == 0) {
         direction(0, -genSpeed);
       }
       else if (xSpeed != 0 || ySpeed != genSpeed) {
@@ -31,8 +30,8 @@ class PlayerSnake {
       }
     }
 
-    if (key == 'a' || key == 'h' || key == LEFT) {
-      if (total == 0) {
+    if (key == 'a' || key == LEFT) {
+      if (tail.size() == 0) {
         direction(-genSpeed, 0);
       }
       else if (xSpeed != genSpeed || ySpeed != 0) {
@@ -40,8 +39,8 @@ class PlayerSnake {
       }
     }
 
-    if (key == 's' || key == 'j' || key == DOWN) {
-      if (total == 0) {
+    if (key == 's' || key == DOWN) {
+      if (tail.size() == 0) {
         direction(0, genSpeed);
       }
       else if (xSpeed != 0 || ySpeed != -genSpeed) {
@@ -49,8 +48,8 @@ class PlayerSnake {
       }
     }
 
-    if (key == 'd' || key == 'l' || key == RIGHT) {
-      if (total == 0) {
+    if (key == 'd' || key == RIGHT) {
+      if (tail.size() == 0) {
         direction(genSpeed, 0);
       }
       else if (xSpeed != -genSpeed || ySpeed != 0) {
@@ -95,7 +94,6 @@ class PlayerSnake {
   boolean eat(Food food) {
     if ((x > food.x - rectSize && x < food.x + food.rectSize) &&
         (y > food.y - rectSize && y < food.y +food.rectSize)) {
-      total++;
       return true;
     }
     else {
