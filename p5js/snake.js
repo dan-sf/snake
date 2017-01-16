@@ -1,21 +1,14 @@
-/* Todo:
-    - make game consistent when frame rate changes
-    - figure out why rendering text takes so long on start up
-    - port to p5.js and push to social (twitter, fb)
-    - update readme
-*/
+var snake;
+var food;
+var score;
+var gameOverSplash;
+var gameOver;
 
-PlayerSnake snake;
-Food food;
-Score score;
-GameOverSplash gameOverSplash;
-boolean gameOver;
+var rectSize = 20;
+var beginGame = false;
 
-int rectSize = 20;
-boolean beginGame = false;
-
-void setup() {
-  size(400, 400);
+function setup() {
+  createCanvas(400, 400);
   background(51);
 
   snake = new PlayerSnake(rectSize);
@@ -28,7 +21,7 @@ void setup() {
   gameOver = false;
 }
 
-void keyPressed() {
+function keyPressed() {
   if (!beginGame) {
     beginGame = true;
   }
@@ -40,8 +33,13 @@ void keyPressed() {
   }
 }
 
-void draw() {
-  boolean updateGame = frameCount % 8 == 0;
+function draw() {
+  fill(255, 0, 100);
+  rect(20, 20, 20, 20);
+}
+
+function draw() {
+  var updateGame = frameCount % 8 === 0;
 
   if (!beginGame) {
     // Opening splash screen
@@ -77,3 +75,4 @@ void draw() {
     gameOverSplash.animate(score.score);
   }
 }
+

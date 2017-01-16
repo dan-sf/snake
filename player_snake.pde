@@ -93,7 +93,7 @@ class PlayerSnake {
 
   boolean eat(Food food) {
     if ((x > food.x - rectSize && x < food.x + food.rectSize) &&
-        (y > food.y - rectSize && y < food.y +food.rectSize)) {
+        (y > food.y - rectSize && y < food.y + food.rectSize)) {
       return true;
     }
     else {
@@ -103,10 +103,10 @@ class PlayerSnake {
 
   boolean death() {
     boolean hitTail = false;
-    boolean hitTop = snake.y < 0;
-    boolean hitBottom = snake.x > height - snake.rectSize;
-    boolean hitLeft = snake.y > width - snake.rectSize;
-    boolean hitRight = snake.x < 0;
+    boolean hitTop = y < 0;
+    boolean hitBottom = x > height - rectSize;
+    boolean hitLeft = y > width - rectSize;
+    boolean hitRight = x < 0;
 
     for (PVector t : tail) {
       if ((x > t.x - rectSize && x < t.x + rectSize) &&
