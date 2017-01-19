@@ -1,16 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Snake Game</title>
-    <script src="lib/p5.js" type="text/javascript"></script>
-    <script src="snake.js" type="text/javascript"></script>
-    <script src="player_snake.js" type="text/javascript"></script>
-    <script src="pvector.js" type="text/javascript"></script>
-    <script src="score.js" type="text/javascript"></script>
-    <script src="food.js" type="text/javascript"></script>
-    <script src="game_over.js" type="text/javascript"></script>
-  </head>
-  <body>
-  </body>
+    <style>
+        body {
+            background-color: gray;
+            text-align: center;
+            margin-top: 20px;
+        }
+        p {
+            position: relative;
+            top: 520px;
+        }
+    </style>
+    <head>
+        <meta charset="UTF-8">
+        <title>Snake</title>
+    </head>
+    <body>
+        <div class="p5js_snake">
+            <script src="lib/p5.js" type="text/javascript"></script>
+            <script src="snake.js" type="text/javascript"></script>
+            <script src="player_snake.js" type="text/javascript"></script>
+            <script src="pvector.js" type="text/javascript"></script>
+            <script src="score.js" type="text/javascript"></script>
+            <script src="food.js" type="text/javascript"></script>
+            <script src="game_over.js" type="text/javascript"></script>
+        </div>
+        <div class="text_desc">
+            <p>My attempt at recreating the classic video game
+            Snake.</br>Inspired by <a href="https://twitter.com/shiffman">@shiffman</a>'s coding
+            challenge series.</br></br><a href="https://github.com/dsfcode/snake">view source</a>
+            | <a href="http://www.dsfcode.com/">home</a></p>
+        </div>
+    </body>
 </html>

@@ -2,6 +2,8 @@
     - make game consistent when frame rate changes
     - figure out why rendering text takes so long on start up
     - port to p5.js and push to social (twitter, fb)
+    - update css to make the web version look better
+    - push to site
     - update readme
 */
 
