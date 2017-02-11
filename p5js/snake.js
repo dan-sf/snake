@@ -48,7 +48,7 @@ function draw() {
     textSize(32);
     text("Snake", width/2, height/3);
     textSize(18);
-    text("Use w,a,s,d for movement\nPress any key to start",
+    text("Use w,a,s,d or arrow keys for movement\nPress any key to start",
          width/2, height/3 + 40);
   }
   else if (!gameOver && updateGame) {
