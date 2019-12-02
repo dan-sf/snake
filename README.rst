@@ -9,4 +9,4 @@ Inspired by `Daniel Shiffman's <http://shiffman.net/>`__ programming challenge
 series.
 
 .. _Processing: https://processing.org/
-.. _here: http://projects.dsfcode.com/snake
+.. _here: https://www.dsfcode.com/games/snake/
